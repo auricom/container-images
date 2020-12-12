@@ -19,7 +19,8 @@ on:
       - reopened
 
 env:
-  REGISTRY_IMAGE: k8sathome/${{ github.workflow }}
+  #REGISTRY_IMAGE: k8sathome/${{ github.workflow }}
+  REGISTRY_IMAGE: pirhana/${{ github.workflow }}
 
 jobs:
   build:
@@ -62,11 +63,10 @@ jobs:
           context: .
           file: ./${{ github.workflow }}/Dockerfile
           platforms: linux/amd64,linux/arm64
-          push: true
-      #    tags: |
-      #      k8sathome/pull-request:${{github.event.number}}
+          push: false
+      #    push: true
           tags: |
-            pirhana/pull-request:${{github.event.number}}
+            k8sathome/pull-request:${{github.event.number}}
 
       - name: Build and Push
         if: github.ref == 'refs/heads/main'
