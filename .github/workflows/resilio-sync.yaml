@@ -61,7 +61,7 @@ jobs:
           build-args: VERSION=${{ steps.prep.outputs.version }}
           context: .
           file: ./${{ github.workflow }}/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
       #    push: true
           push: false
       #    tags: |
@@ -74,7 +74,7 @@ jobs:
           build-args: VERSION=${{ steps.prep.outputs.version }}
           context: .
           file: ./${{ github.workflow }}/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
       #    push: true
           push: false
       #    tags: |
