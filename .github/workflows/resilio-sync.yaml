@@ -55,21 +55,21 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build and Push
-        if: github.ref != 'refs/heads/main'
-        uses: docker/build-push-action@v2
-        with:
-          build-args: VERSION=${{ steps.prep.outputs.version }}
-          context: .
-          file: ./${{ github.workflow }}/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: false
+      #- name: Build and Push
+      #  if: github.ref != 'refs/heads/main'
+      #  uses: docker/build-push-action@v2
+      #  with:
+      #    build-args: VERSION=${{ steps.prep.outputs.version }}
+      #    context: .
+      #    file: ./${{ github.workflow }}/Dockerfile
+      #    platforms: linux/amd64,linux/arm64
+      #    push: false
       #    push: true
       #    tags: |
       #      k8sathome/pull-request:${{github.event.number}}
 
-      - name: Build and Push 2
-        if: github.ref == 'refs/heads/main'
+      - name: Build and Push
+      #  if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
           build-args: VERSION=${{ steps.prep.outputs.version }}
