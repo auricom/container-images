@@ -48,11 +48,11 @@ jobs:
           version: latest
           driver-opts: image=moby/buildkit:master
 
-      #- name: Login to DockerHub
-      #  uses: docker/login-action@v1
-      #  with:
-      #    username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #    password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and Push
         if: github.ref != 'refs/heads/main'
@@ -62,10 +62,11 @@ jobs:
           context: .
           file: ./${{ github.workflow }}/Dockerfile
           platforms: linux/amd64,linux/arm64
-      #    push: true
-          push: false
+          push: true
       #    tags: |
       #      k8sathome/pull-request:${{github.event.number}}
+          tags: |
+            pirhana/pull-request:${{github.event.number}}
 
       - name: Build and Push
         if: github.ref == 'refs/heads/main'
@@ -75,8 +76,7 @@ jobs:
           context: .
           file: ./${{ github.workflow }}/Dockerfile
           platforms: linux/amd64,linux/arm64
-      #    push: true
-          push: false
-      #    tags: |
-      #      ${{ env.REGISTRY_IMAGE }}:latest
-      #      ${{ env.REGISTRY_IMAGE }}:v${{ steps.prep.outputs.version }}
+          push: true
+          tags: |
+            ${{ env.REGISTRY_IMAGE }}:latest
+            ${{ env.REGISTRY_IMAGE }}:v${{ steps.prep.outputs.version }}
