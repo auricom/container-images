@@ -65,8 +65,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: false
       #    push: true
-          tags: |
-            k8sathome/pull-request:${{github.event.number}}
+      #    tags: |
+      #      k8sathome/pull-request:${{github.event.number}}
 
       - name: Build and Push
         if: github.ref == 'refs/heads/main'
