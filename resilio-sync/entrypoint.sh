@@ -4,4 +4,4 @@
 source "/shim/umask.sh"
 source "/shim/vpn.sh"
 
-exec /usr/bin/rslsync
+exec /usr/bin/rslsync --config /config/sync.conf
