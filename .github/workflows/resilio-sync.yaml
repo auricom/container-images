@@ -62,8 +62,8 @@ jobs:
           context: .
           file: ./${{ github.workflow }}/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-      #    push: false
+      #    push: true
+          push: false
       #    tags: |
       #      k8sathome/pull-request:${{github.event.number}}
 
