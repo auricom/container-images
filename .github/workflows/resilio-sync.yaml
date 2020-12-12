@@ -3,7 +3,8 @@ name: resilio-sync
 on:
   push:
     branches:
-      - main
+      #- main
+      - resilio-sync
     paths:
       - '.github/workflows/resilio-sync.yaml'
       - 'resilio-sync/**'
